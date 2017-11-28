@@ -1,5 +1,7 @@
 # @pnpm/local-resolver
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pnpm/local-resolver.svg)](https://greenkeeper.io/)
+
 > Resolver for local packages
 
 <!--@shields('npm', 'travis')-->
