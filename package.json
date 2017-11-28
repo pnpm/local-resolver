@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "tslint -c tslint.json --project .",
     "tsc": "tsc",
-    "test": "npm run lint && preview && ts-node test && mos t",
+    "test": "npm run lint && preview && ts-node test",
     "md": "mos",
     "prepublishOnly": "npm run tsc",
     "fix": "tslint -c tslint.json --project . --fix"

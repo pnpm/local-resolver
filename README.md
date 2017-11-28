@@ -10,7 +10,28 @@
 
 Install it via npm.
 
-    npm install @pnpm/git-resolver
+    npm install @pnpm/local-resolver
+
+## Usage
+
+```js
+'use strict'
+const resolveFromLocal = require('@pnpm/local-resolver').default
+
+resolveFromLocal({pref: './example-package'}, {prefix: process.cwd()})
+  .then(resolveResult => console.log(resolveResult))
+//> { id: 'file:example-package',
+//    normalizedPref: 'file:example-package',
+//    package:
+//     { name: 'foo',
+//       version: '1.0.0',
+//       readme: '# foo\n',
+//       readmeFilename: 'README.md',
+//       description: '',
+//       _id: 'foo@1.0.0' },
+//    resolution: { directory: 'example-package', type: 'directory' } }
+
+```
 
 ## License
 
