@@ -1,7 +1,9 @@
 import {PackageJson} from '@pnpm/types'
+import fs = require('graceful-fs')
 import normalize = require('normalize-path')
 import path = require('path')
 import readPackageJsonCB = require('read-package-json')
+import ssri = require('ssri')
 import promisify = require('util.promisify')
 import parsePref from './parsePref'
 
@@ -33,7 +35,10 @@ export default async function resolveLocal (
     return {
       id,
       normalizedPref: spec.normalizedPref,
-      resolution: { tarball: id },
+      resolution: {
+        integrity: await getFileIntegrity(spec.fetchSpec),
+        tarball: id,
+      },
     }
   }
 
@@ -47,4 +52,8 @@ export default async function resolveLocal (
       type: 'directory',
     },
   }
+}
+
+async function getFileIntegrity (filename: string) {
+  return (await ssri.fromStream(fs.createReadStream(filename))).toString()
 }

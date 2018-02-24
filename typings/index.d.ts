@@ -17,3 +17,8 @@ declare module 'osenv' {
   const anything: any;
   export = anything;
 }
+
+declare module 'ssri' {
+  const anything: any;
+  export = anything;
+}

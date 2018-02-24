@@ -1,9 +1,12 @@
 dependencies:
   '@pnpm/types': 1.7.0
+  '@types/graceful-fs': 4.1.2
   '@types/node': 9.4.6
+  graceful-fs: 4.1.11
   normalize-path: 2.1.1
   osenv: 0.1.5
   read-package-json: 2.0.12
+  ssri: 5.2.4
   util.promisify: 1.0.0
 devDependencies:
   '@types/tape': 4.2.31
@@ -49,6 +52,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-quhlNPGIkaRyO4PnEuP9pEkUPktjfrvPESENGOhiEzgOUNbunETSQXY5bkZY+Bb/J9V5p/f50Rh1eDklD4Z2FQ==
+  /@types/graceful-fs/4.1.2:
+    dependencies:
+      '@types/node': 9.4.6
+    dev: false
+    resolution:
+      integrity: sha512-epDhsJAVxJsWfeqpzEDFhLnhHMbHie/VMFY+2Hvt5p7FemeW5ELM+6gcVYL/ZsUwdu3zrWpDE3VUTddXW+EMYg==
   /@types/load-json-file/2.0.7:
     dev: true
     resolution:
@@ -2313,7 +2322,6 @@ packages:
     resolution:
       integrity: sha1-v2zoO4dRDRY0Ru6qV37WpvxYNeA=
   /safe-buffer/5.1.1:
-    dev: true
     resolution:
       integrity: sha512-kKvNJn6Mm93gAczWVJg7wH+wGYWNrDHdWvpUmHyEsgCtIwwo3bqPtV4tR5tuPaUhTOo/kvhVwd8XwwOllGYkbg==
   /semver-diff/2.1.0:
@@ -2438,7 +2446,6 @@ packages:
   /ssri/5.2.4:
     dependencies:
       safe-buffer: 5.1.1
-    dev: true
     resolution:
       integrity: sha512-UnEAgMZa15973iH7cUi0AHjJn1ACDIkaMyZILoqwN6yzt+4P81I8tBc5Hl+qwi5auMplZtPQsHrPBR5vJLcQtQ==
   /stream-shift/1.0.0:
@@ -2934,14 +2941,17 @@ shrinkwrapMinorVersion: 4
 shrinkwrapVersion: 3
 specifiers:
   '@pnpm/types': ^1.1.0
+  '@types/graceful-fs': ^4.1.2
   '@types/node': ^9.3.0
   '@types/tape': ^4.2.31
+  graceful-fs: ^4.1.11
   mos: ^2.0.0-alpha.3
   mos-plugin-readme: ^1.0.4
   normalize-path: ^2.1.1
   osenv: ^0.1.4
   package-preview: ^1.0.1
   read-package-json: ^2.0.12
+  ssri: ^5.2.4
   tape: ^4.8.0
   ts-node: ^5.0.0
   tslint: ^5.8.0
