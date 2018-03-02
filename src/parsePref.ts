@@ -33,11 +33,12 @@ export default function parsePref (
       return fromLocal(pref, where, type)
     }
   if (pref.startsWith('path:')) {
-    const err = new Error('Local dependencies via `path:` prefix are not supported. ' +
-      'Use the `link:` prefix for folder dependencies and `file:` for local tarballs')
+    const err = new Error('Local dependencies via `path:` protocol are not supported. ' +
+      'Use the `link:` protocol for folder dependencies and `file:` for local tarballs')
     // tslint:disable:no-string-literal
-    err['code'] = 'INVALID_PREF'
+    err['code'] = 'EUNSUPPORTEDPROTOCOL'
     err['pref'] = pref
+    err['protocol'] = 'path:'
     // tslint:enable:no-string-literal
     throw err
   }
@@ -52,24 +53,24 @@ function fromLocal (pref: string, where: string, type: 'file' | 'directory'): Lo
     .replace(/^(file|link):(?:[/]*([~./]))?/, '$2')
 
   // TODO: always use link: for directory dependencies
-  const prefPrefix = pref.startsWith('link:') ? 'link:' : 'file:'
+  const protocol = pref.startsWith('link:') ? 'link:' : 'file:'
   let fetchSpec!: string
   let normalizedPref!: string
   if (/^~[/]/.test(spec)) {
     // this is needed for windows and for file:~/foo/bar
     fetchSpec = resolvePath(osenv.home(), spec.slice(2))
-    normalizedPref = `${prefPrefix}${spec}`
+    normalizedPref = `${protocol}${spec}`
   } else {
     fetchSpec = resolvePath(where, spec)
     if (isAbsolute(spec)) {
-      normalizedPref = `${prefPrefix}${spec}`
+      normalizedPref = `${protocol}${spec}`
     } else {
-      normalizedPref = `${prefPrefix}${path.relative(where, fetchSpec)}`
+      normalizedPref = `${protocol}${path.relative(where, fetchSpec)}`
     }
   }
 
   const dependencyPath = normalize(path.relative(where, fetchSpec))
-  const id = `${prefPrefix}${dependencyPath}`
+  const id = `${protocol}${dependencyPath}`
 
   return {
     dependencyPath,

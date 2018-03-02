@@ -1,7 +1,7 @@
 import test = require('tape')
 import resolveFromLocal from '@pnpm/local-resolver'
 
-test('resolve directoty', async t => {
+test('resolve directory', async t => {
   const resolveResult = await resolveFromLocal({pref: '..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'file:..')
   t.equal(resolveResult!.normalizedPref, 'file:..')
@@ -11,7 +11,7 @@ test('resolve directoty', async t => {
   t.end()
 })
 
-test('resolve directoty via file: prefix', async t => {
+test('resolve directory specified using the file: protocol', async t => {
   const resolveResult = await resolveFromLocal({pref: 'file:..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'file:..')
   t.equal(resolveResult!.normalizedPref, 'file:..')
@@ -21,7 +21,7 @@ test('resolve directoty via file: prefix', async t => {
   t.end()
 })
 
-test('resolve directoty via link: prefix', async t => {
+test('resolve directoty specified using the link: protocol', async t => {
   const resolveResult = await resolveFromLocal({pref: 'link:..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'link:..')
   t.equal(resolveResult!.normalizedPref, 'link:..')
@@ -47,7 +47,7 @@ test('resolve file', async t => {
   t.end()
 })
 
-test('resolve file with file: prefixed', async t => {
+test('resolve tarball specified with file: protocol', async t => {
   const wantedDependency = {pref: 'file:./pnpm-local-resolver-0.1.1.tgz'}
   const resolveResult = await resolveFromLocal(wantedDependency, {prefix: __dirname})
 
@@ -63,7 +63,7 @@ test('resolve file with file: prefixed', async t => {
   t.end()
 })
 
-test("fail when resolving tarball with link: prefix", async t => {
+test("fail when resolving tarball specified with the link: protocol", async t => {
   try {
     const wantedDependency = {pref: 'link:./pnpm-local-resolver-0.1.1.tgz'}
     const resolveResult = await resolveFromLocal(wantedDependency, {prefix: __dirname})
@@ -74,14 +74,15 @@ test("fail when resolving tarball with link: prefix", async t => {
   }
 })
 
-test('throw error on path: prefixed local deps', async t => {
+test('throw error when the path: protocol is used', async t => {
   try {
     await resolveFromLocal({pref: 'path:..'}, {prefix: __dirname})
     t.fail()
   } catch (err) {
     t.ok(err)
-    t.equal(err.code, 'INVALID_PREF')
+    t.equal(err.code, 'EUNSUPPORTEDPROTOCOL')
     t.equal(err.pref, 'path:..')
+    t.equal(err.protocol, 'path:')
     t.end()
   }
 })
