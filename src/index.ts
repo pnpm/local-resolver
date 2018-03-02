@@ -1,6 +1,5 @@
 import {PackageJson} from '@pnpm/types'
 import fs = require('graceful-fs')
-import normalize = require('normalize-path')
 import path = require('path')
 import readPackageJsonCB = require('read-package-json')
 import ssri = require('ssri')
@@ -28,27 +27,24 @@ export default async function resolveLocal (
   const spec = parsePref(wantedDependency.pref, opts.prefix)
   if (!spec) return null
 
-  const dependencyPath = normalize(path.relative(opts.prefix, spec.fetchSpec))
-  const id = `file:${dependencyPath}`
-
   if (spec.type === 'file') {
     return {
-      id,
+      id: spec.id,
       normalizedPref: spec.normalizedPref,
       resolution: {
         integrity: await getFileIntegrity(spec.fetchSpec),
-        tarball: id,
+        tarball: spec.id,
       },
     }
   }
 
   const localPkg = await readPackageJson(path.join(spec.fetchSpec, 'package.json'))
   return {
-    id,
+    id: spec.id,
     normalizedPref: spec.normalizedPref,
     package: localPkg,
     resolution: {
-      directory: dependencyPath,
+      directory: spec.dependencyPath,
       type: 'directory',
     },
   }
