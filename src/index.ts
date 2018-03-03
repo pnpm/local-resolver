@@ -38,7 +38,26 @@ export default async function resolveLocal (
     }
   }
 
-  const localPkg = await readPackageJson(path.join(spec.fetchSpec, 'package.json'))
+  let localPkg!: PackageJson
+  try {
+    localPkg = await readPackageJson(path.join(spec.fetchSpec, 'package.json'))
+  } catch (internalErr) {
+    switch (internalErr.code) {
+      case 'ENOTDIR': {
+        const err = new Error(`Could not install from "${spec.fetchSpec}" as it is not a directory.`)
+        err['code'] = 'ENOTPKGDIR' // tslint:disable-line:no-string-literal
+        throw err
+      }
+      case 'ENOENT': {
+        const err = new Error(`Could not install from "${spec.fetchSpec}" as it does not contain a package.json file.`)
+        err['code'] = 'ENOLOCAL' // tslint:disable-line:no-string-literal
+        throw err
+      }
+      default: {
+        throw internalErr
+      }
+    }
+  }
   return {
     id: spec.id,
     normalizedPref: spec.normalizedPref,

@@ -70,6 +70,19 @@ test("fail when resolving tarball specified with the link: protocol", async t =>
     t.fail()
   } catch (err) {
     t.ok(err)
+    t.equal(err.code, 'ENOTPKGDIR')
+    t.end()
+  }
+})
+
+test("fail when resolving from not existing directory", async t => {
+  try {
+    const wantedDependency = {pref: 'link:./dir-does-not-exist'}
+    const resolveResult = await resolveFromLocal(wantedDependency, {prefix: __dirname})
+    t.fail()
+  } catch (err) {
+    t.ok(err)
+    t.equal(err.code, 'ENOLOCAL')
     t.end()
   }
 })
