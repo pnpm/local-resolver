@@ -1,5 +1,6 @@
 dependencies:
   '@pnpm/local-resolver': 'link:../__package_previews__/local-resolver/@pnpm/local-resolver'
+  '@pnpm/resolver-base': 1.1.0
   '@pnpm/types': 1.7.0
   '@types/graceful-fs': 4.1.2
   '@types/node': 10.0.6
@@ -31,6 +32,14 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-sYJOXPxpQxFcTSACFRFCuIQdnZLNaOgTHGF+CQNYlKnlc2ZnmEW+lAZVTc0hJSU+8mnTY7ei39MbYpI5q+li+w==
+  /@pnpm/resolver-base/1.1.0:
+    dependencies:
+      '@pnpm/types': 1.7.0
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-YRUmjy2mR7Qk0r3xCUs0UkWLwRM2Mu2Fjyl2513PNlzsjDFG1xw4lbHRuz/bCMeN+ZKynJbIbfSW0ddMitfbgA==
   /@pnpm/self-installer/2.0.3:
     dev: true
     engines:
@@ -3001,6 +3010,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 5
 shrinkwrapVersion: 3
 specifiers:
+  '@pnpm/resolver-base': ^1.1.0
   '@pnpm/types': ^1.1.0
   '@types/graceful-fs': ^4.1.2
   '@types/node': ^10.0.6

@@ -1,3 +1,4 @@
+import {ResolveResult} from '@pnpm/resolver-base'
 import {PackageJson} from '@pnpm/types'
 import fs = require('graceful-fs')
 import path = require('path')
@@ -14,7 +15,7 @@ const readPackageJson = promisify(readPackageJsonCB)
 export default async function resolveLocal (
   wantedDependency: {pref: string},
   opts: {prefix: string},
-): Promise<{
+): Promise<(ResolveResult & {
   id: string,
   normalizedPref: string,
   resolution: {tarball: string},
@@ -23,7 +24,7 @@ export default async function resolveLocal (
   normalizedPref: string,
   package: PackageJson,
   resolution: {directory: string, type: 'directory'},
-} | null> {
+}) | null> {
   const spec = parsePref(wantedDependency.pref, opts.prefix)
   if (!spec) return null
 
@@ -35,6 +36,7 @@ export default async function resolveLocal (
         integrity: await getFileIntegrity(spec.fetchSpec),
         tarball: spec.id,
       },
+      resolvedVia: 'local-filesystem',
     }
   }
 
@@ -66,6 +68,7 @@ export default async function resolveLocal (
       directory: spec.dependencyPath,
       type: 'directory',
     },
+    resolvedVia: 'local-filesystem',
   }
 }
 

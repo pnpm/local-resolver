@@ -5,7 +5,7 @@ test('resolve directory', async t => {
   const resolveResult = await resolveFromLocal({pref: '..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'file:..')
   t.equal(resolveResult!.normalizedPref, 'file:..')
-  t.equal(resolveResult!['package'].name, '@pnpm/local-resolver')
+  t.equal(resolveResult!['package']!.name, '@pnpm/local-resolver')
   t.equal(resolveResult!.resolution!['directory'], '..')
   t.equal(resolveResult!.resolution!['type'], 'directory')
   t.end()
@@ -15,7 +15,7 @@ test('resolve directory specified using the file: protocol', async t => {
   const resolveResult = await resolveFromLocal({pref: 'file:..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'file:..')
   t.equal(resolveResult!.normalizedPref, 'file:..')
-  t.equal(resolveResult!['package'].name, '@pnpm/local-resolver')
+  t.equal(resolveResult!['package']!.name, '@pnpm/local-resolver')
   t.equal(resolveResult!.resolution!['directory'], '..')
   t.equal(resolveResult!.resolution!['type'], 'directory')
   t.end()
@@ -25,7 +25,7 @@ test('resolve directoty specified using the link: protocol', async t => {
   const resolveResult = await resolveFromLocal({pref: 'link:..'}, {prefix: __dirname})
   t.equal(resolveResult!.id, 'link:..')
   t.equal(resolveResult!.normalizedPref, 'link:..')
-  t.equal(resolveResult!['package'].name, '@pnpm/local-resolver')
+  t.equal(resolveResult!['package']!.name, '@pnpm/local-resolver')
   t.equal(resolveResult!.resolution!['directory'], '..')
   t.equal(resolveResult!.resolution!['type'], 'directory')
   t.end()
@@ -42,6 +42,7 @@ test('resolve file', async t => {
       integrity: 'sha512-UHd2zKRT/w70KKzFlj4qcT81A1Q0H7NM9uKxLzIZ/VZqJXzt5Hnnp2PYPb5Ezq/hAamoYKIn5g7fuv69kP258w==',
       tarball: 'file:pnpm-local-resolver-0.1.1.tgz',
     },
+    resolvedVia: 'local-filesystem',
   })
 
   t.end()
@@ -58,6 +59,7 @@ test('resolve tarball specified with file: protocol', async t => {
       integrity: 'sha512-UHd2zKRT/w70KKzFlj4qcT81A1Q0H7NM9uKxLzIZ/VZqJXzt5Hnnp2PYPb5Ezq/hAamoYKIn5g7fuv69kP258w==',
       tarball: 'file:pnpm-local-resolver-0.1.1.tgz',
     },
+    resolvedVia: 'local-filesystem',
   })
 
   t.end()
