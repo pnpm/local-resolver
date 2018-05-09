@@ -1,5 +1,4 @@
 dependencies:
-  '@pnpm/local-resolver': 'link:../__package_previews__/local-resolver/@pnpm/local-resolver'
   '@pnpm/resolver-base': 1.1.0
   '@pnpm/types': 1.7.0
   '@types/graceful-fs': 4.1.2
@@ -8,7 +7,7 @@ dependencies:
   normalize-path: 3.0.0
   osenv: 0.1.5
   read-package-json: 2.0.13
-  ssri: 5.3.0
+  ssri: 6.0.0
   util.promisify: 1.0.0
 devDependencies:
   '@types/tape': 4.2.32
@@ -2377,6 +2376,7 @@ packages:
     resolution:
       integrity: sha1-v2zoO4dRDRY0Ru6qV37WpvxYNeA=
   /safe-buffer/5.1.2:
+    dev: true
     resolution:
       integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
   /semver-diff/2.1.0:
@@ -2509,8 +2509,13 @@ packages:
   /ssri/5.3.0:
     dependencies:
       safe-buffer: 5.1.2
+    dev: true
     resolution:
       integrity: sha512-XRSIPqLij52MtgoQavH/x/dU1qVKtWUAAZeOHsR9c2Ddi4XerFy3mc1alf+dLJKl9EUIm/Ht+EowFkTUOA6GAQ==
+  /ssri/6.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-zYOGfVHPhxyzwi8MdtdNyxv3IynWCIM4jYReR48lqu0VngxgH1c+C6CmipRdJ55eVByTJV/gboFEEI7TEQI8DA==
   /stream-shift/1.0.0:
     dev: true
     resolution:
@@ -3022,7 +3027,7 @@ specifiers:
   osenv: ^0.1.4
   package-preview: ^1.0.1
   read-package-json: ^2.0.12
-  ssri: ^5.2.4
+  ssri: ^6.0.0
   tape: ^4.8.0
   ts-node: ^6.0.0
   tslint: ^5.8.0
