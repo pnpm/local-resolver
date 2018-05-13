@@ -20,8 +20,8 @@ const resolveFromLocal = require('@pnpm/local-resolver').default
 
 resolveFromLocal({pref: './example-package'}, {prefix: process.cwd()})
   .then(resolveResult => console.log(resolveResult))
-//> { id: 'file:example-package',
-//    normalizedPref: 'file:example-package',
+//> { id: 'link:example-package',
+//    normalizedPref: 'link:example-package',
 //    package:
 //     { name: 'foo',
 //       version: '1.0.0',
@@ -29,8 +29,8 @@ resolveFromLocal({pref: './example-package'}, {prefix: process.cwd()})
 //       readmeFilename: 'README.md',
 //       description: '',
 //       _id: 'foo@1.0.0' },
-//    resolution: { directory: 'example-package', type: 'directory' } }
-
+//    resolution: { directory: 'example-package', type: 'directory' }
+//    resolvedVia: 'local-filesystem' }
 ```
 
 ## License
