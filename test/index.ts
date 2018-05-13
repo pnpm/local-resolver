@@ -3,8 +3,8 @@ import resolveFromLocal from '@pnpm/local-resolver'
 
 test('resolve directory', async t => {
   const resolveResult = await resolveFromLocal({pref: '..'}, {prefix: __dirname})
-  t.equal(resolveResult!.id, 'file:..')
-  t.equal(resolveResult!.normalizedPref, 'file:..')
+  t.equal(resolveResult!.id, 'link:..')
+  t.equal(resolveResult!.normalizedPref, 'link:..')
   t.equal(resolveResult!['package']!.name, '@pnpm/local-resolver')
   t.equal(resolveResult!.resolution!['directory'], '..')
   t.equal(resolveResult!.resolution!['type'], 'directory')
@@ -13,8 +13,8 @@ test('resolve directory', async t => {
 
 test('resolve directory specified using the file: protocol', async t => {
   const resolveResult = await resolveFromLocal({pref: 'file:..'}, {prefix: __dirname})
-  t.equal(resolveResult!.id, 'file:..')
-  t.equal(resolveResult!.normalizedPref, 'file:..')
+  t.equal(resolveResult!.id, 'link:..')
+  t.equal(resolveResult!.normalizedPref, 'link:..')
   t.equal(resolveResult!['package']!.name, '@pnpm/local-resolver')
   t.equal(resolveResult!.resolution!['directory'], '..')
   t.equal(resolveResult!.resolution!['type'], 'directory')
