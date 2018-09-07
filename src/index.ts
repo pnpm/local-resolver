@@ -47,12 +47,12 @@ export default async function resolveLocal (
     switch (internalErr.code) {
       case 'ENOTDIR': {
         const err = new Error(`Could not install from "${spec.fetchSpec}" as it is not a directory.`)
-        err['code'] = 'ENOTPKGDIR' // tslint:disable-line:no-string-literal
+        err['code'] = 'ERR_PNPM_NOT_PACKAGE_DIRECTORY' // tslint:disable-line:no-string-literal
         throw err
       }
       case 'ENOENT': {
         const err = new Error(`Could not install from "${spec.fetchSpec}" as it does not contain a package.json file.`)
-        err['code'] = 'ENOLOCAL' // tslint:disable-line:no-string-literal
+        err['code'] = 'ERR_PNPM_DIRECTORY_HAS_NO_PACKAGE_JSON' // tslint:disable-line:no-string-literal
         throw err
       }
       default: {

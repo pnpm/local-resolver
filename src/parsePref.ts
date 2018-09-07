@@ -36,7 +36,7 @@ export default function parsePref (
     const err = new Error('Local dependencies via `path:` protocol are not supported. ' +
       'Use the `link:` protocol for folder dependencies and `file:` for local tarballs')
     // tslint:disable:no-string-literal
-    err['code'] = 'EUNSUPPORTEDPROTOCOL'
+    err['code'] = 'ERR_PNPM_PATH_IS_UNSUPPORTED_PROTOCOL'
     err['pref'] = pref
     err['protocol'] = 'path:'
     // tslint:enable:no-string-literal

@@ -72,7 +72,7 @@ test("fail when resolving tarball specified with the link: protocol", async t =>
     t.fail()
   } catch (err) {
     t.ok(err)
-    t.equal(err.code, 'ENOTPKGDIR')
+    t.equal(err.code, 'ERR_PNPM_NOT_PACKAGE_DIRECTORY')
     t.end()
   }
 })
@@ -84,7 +84,7 @@ test("fail when resolving from not existing directory", async t => {
     t.fail()
   } catch (err) {
     t.ok(err)
-    t.equal(err.code, 'ENOLOCAL')
+    t.equal(err.code, 'ERR_PNPM_DIRECTORY_HAS_NO_PACKAGE_JSON')
     t.end()
   }
 })
@@ -95,7 +95,7 @@ test('throw error when the path: protocol is used', async t => {
     t.fail()
   } catch (err) {
     t.ok(err)
-    t.equal(err.code, 'EUNSUPPORTEDPROTOCOL')
+    t.equal(err.code, 'ERR_PNPM_PATH_IS_UNSUPPORTED_PROTOCOL')
     t.equal(err.pref, 'path:..')
     t.equal(err.protocol, 'path:')
     t.end()
