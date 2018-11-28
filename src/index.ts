@@ -1,13 +1,10 @@
-import {ResolveResult} from '@pnpm/resolver-base'
-import {PackageJson} from '@pnpm/types'
+import readPackageJson from '@pnpm/read-package-json'
+import { ResolveResult } from '@pnpm/resolver-base'
+import { PackageJson } from '@pnpm/types'
 import fs = require('graceful-fs')
 import path = require('path')
-import readPackageJsonCB = require('read-package-json')
 import ssri = require('ssri')
-import promisify = require('util.promisify')
 import parsePref from './parsePref'
-
-const readPackageJson = promisify(readPackageJsonCB)
 
 /**
  * Resolves a package hosted on the local filesystem

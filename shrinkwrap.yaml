@@ -1,13 +1,12 @@
 dependencies:
+  '@pnpm/read-package-json': 1.0.1
   '@pnpm/resolver-base': 2.0.0
   '@pnpm/types': 2.0.0
   '@types/graceful-fs': 4.1.2
   '@types/node': 10.12.10
   graceful-fs: 4.1.15
   normalize-path: 3.0.0
-  read-package-json: 2.0.13
   ssri: 6.0.1
-  util.promisify: 1.0.0
 devDependencies:
   '@types/tape': 4.2.32
   mos: 2.0.0-alpha.3
@@ -30,6 +29,16 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-1zLmh6tRftQXfZ1IFHq1IexP0KaJhN6pSCA/IzK+Vixn4hPvxwcIbGjKW0KH9hsHSmrPpmSit2EWj7jGNgfa6Q==
+  /@pnpm/read-package-json/1.0.1:
+    dependencies:
+      '@pnpm/types': 2.0.0
+      read-package-json: 2.0.13
+      util.promisify: 1.0.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-2ZUZ9v6V88ZMliGCV+qP2/mhUCj5IWjfkocS594RbMQ50ThbfWsagU1GRIE1EsXvQI4MBCjiRivXDw9fCHKe1Q==
   /@pnpm/resolver-base/2.0.0:
     dependencies:
       '@pnpm/types': 2.0.0
@@ -3051,20 +3060,19 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@pnpm/read-package-json': 1.0.1
   '@pnpm/resolver-base': ^2.0.0
   '@pnpm/types': ^2.0.0
   '@types/graceful-fs': ^4.1.2
   '@types/node': ^10.0.6
   '@types/tape': ^4.2.31
-  graceful-fs: ^4.1.11
+  graceful-fs: 4.1.15
   mos: ^2.0.0-alpha.3
   mos-plugin-readme: ^1.0.4
-  normalize-path: ^3.0.0
+  normalize-path: 3.0.0
   package-preview: ^1.0.1
-  read-package-json: ^2.0.12
-  ssri: ^6.0.0
+  ssri: 6.0.1
   tape: ^4.8.0
   ts-node: ^7.0.0
   tslint: ^5.8.0
   typescript: ^3.0.0
-  util.promisify: ^1.0.0
