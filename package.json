@@ -40,7 +40,6 @@
     "@types/node": "^10.0.6",
     "graceful-fs": "^4.1.11",
     "normalize-path": "^3.0.0",
-    "osenv": "^0.1.4",
     "read-package-json": "^2.0.12",
     "ssri": "^6.0.0",
     "util.promisify": "^1.0.0"

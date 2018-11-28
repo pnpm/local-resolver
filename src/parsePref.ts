@@ -1,5 +1,5 @@
 import normalize = require('normalize-path')
-import osenv = require('osenv')
+import os = require('os')
 import path = require('path')
 
 // tslint:disable-next-line
@@ -57,7 +57,7 @@ function fromLocal (pref: string, where: string, type: 'file' | 'directory'): Lo
   let normalizedPref!: string
   if (/^~[/]/.test(spec)) {
     // this is needed for windows and for file:~/foo/bar
-    fetchSpec = resolvePath(osenv.home(), spec.slice(2))
+    fetchSpec = resolvePath(os.homedir(), spec.slice(2))
     normalizedPref = `${protocol}${spec}`
   } else {
     fetchSpec = resolvePath(where, spec)
