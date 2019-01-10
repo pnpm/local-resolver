@@ -11,7 +11,10 @@ import parsePref from './parsePref'
  */
 export default async function resolveLocal (
   wantedDependency: {pref: string},
-  opts: {prefix: string},
+  opts: {
+    prefix: string,
+    shrinkwrapDirectory?: string,
+  },
 ): Promise<(ResolveResult & {
   id: string,
   normalizedPref: string,
@@ -22,7 +25,7 @@ export default async function resolveLocal (
   package: PackageJson,
   resolution: {directory: string, type: 'directory'},
 }) | null> {
-  const spec = parsePref(wantedDependency.pref, opts.prefix)
+  const spec = parsePref(wantedDependency.pref, opts.prefix, opts.shrinkwrapDirectory || opts.prefix)
   if (!spec) return null
 
   if (spec.type === 'file') {

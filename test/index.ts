@@ -1,3 +1,4 @@
+import path = require('path')
 import test = require('tape')
 import resolveFromLocal from '@pnpm/local-resolver'
 
@@ -41,6 +42,26 @@ test('resolve file', async t => {
     resolution: {
       integrity: 'sha512-UHd2zKRT/w70KKzFlj4qcT81A1Q0H7NM9uKxLzIZ/VZqJXzt5Hnnp2PYPb5Ezq/hAamoYKIn5g7fuv69kP258w==',
       tarball: 'file:pnpm-local-resolver-0.1.1.tgz',
+    },
+    resolvedVia: 'local-filesystem',
+  })
+
+  t.end()
+})
+
+test("resolve file when shrinkwrap directory differs from the package's dir", async t => {
+  const wantedDependency = {pref: './pnpm-local-resolver-0.1.1.tgz'}
+  const resolveResult = await resolveFromLocal(wantedDependency, {
+    prefix: __dirname,
+    shrinkwrapDirectory: path.join(__dirname, '..'),
+  })
+
+  t.deepEqual(resolveResult, {
+    id: 'file:test/pnpm-local-resolver-0.1.1.tgz',
+    normalizedPref: 'file:pnpm-local-resolver-0.1.1.tgz',
+    resolution: {
+      integrity: 'sha512-UHd2zKRT/w70KKzFlj4qcT81A1Q0H7NM9uKxLzIZ/VZqJXzt5Hnnp2PYPb5Ezq/hAamoYKIn5g7fuv69kP258w==',
+      tarball: 'file:test/pnpm-local-resolver-0.1.1.tgz',
     },
     resolvedVia: 'local-filesystem',
   })
