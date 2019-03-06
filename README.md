@@ -1,3 +1,5 @@
+> this package was moved to https://github.com/pnpm/pnpm
+
 # @pnpm/local-resolver
 
 > Resolver for local packages
